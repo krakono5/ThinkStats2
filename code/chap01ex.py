@@ -21,6 +21,11 @@ def main(script):
     """
     print('%s: All tests passed.' % script)
 
+    df = nsfg.ReadFemResp()
+
+    value_count = df['pregnum'].value_counts().sort_index()
+    print(value_count)
+
 
 if __name__ == '__main__':
     main(*sys.argv)
