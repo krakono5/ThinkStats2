@@ -8,10 +8,11 @@ License: GNU GPLv3 http://www.gnu.org/licenses/gpl.html
 from __future__ import print_function
 
 import sys
-from operator import itemgetter
 
 import first
 import thinkstats2
+
+from collections import OrderedDict
 
 
 def Mode(hist):
@@ -21,7 +22,10 @@ def Mode(hist):
 
     returns: value from Hist
     """
-    return 0
+    ordered_dict = OrderedDict(sorted(hist.Items(), key=lambda t: t[1]))
+    res = ordered_dict.popitem(last=True)
+
+    return res[0]
 
 
 def AllModes(hist):
@@ -31,7 +35,10 @@ def AllModes(hist):
 
     returns: iterator of value-freq pairs
     """
-    return []
+    ordered_dict = OrderedDict(sorted(hist.Items(), key=lambda t: t[1]))
+    res = list(reversed(ordered_dict.items()))
+
+    return res
 
 
 def main(script):
